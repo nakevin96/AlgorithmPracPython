@@ -14,3 +14,18 @@ class Solution:
         return sorted_strs.values()
 """
 
+
+def group_anagrams(word_list):
+    sorted_word_dict = {}
+    for word in word_list:
+        sorted_word = ''.join(sorted(word))
+        if sorted_word not in sorted_word_dict:
+            sorted_word_dict[sorted_word] = [word]
+        else:
+            sorted_word_dict[sorted_word].append(word)
+
+    return list(sorted_word_dict.values())
+
+
+input_list = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(group_anagrams(input_list))
