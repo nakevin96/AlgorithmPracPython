@@ -15,6 +15,6 @@ def two_sum(nums, target):
         num_remain = target - num
 
         if num_remain in nums[num_idx + 1:]:
-            return [num_idx, nums[num_idx + 1].index(num_remain) + num_idx + 1]
+            return [num_idx, nums[num_idx + 1:].index(num_remain) + num_idx + 1]
 
     return None
