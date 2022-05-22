@@ -14,19 +14,16 @@ def solution(board, moves):
     item_count = make_dict(board)
     result = 0
     size = len(board)
-    stack = []
+    stack = [0]
     for move in moves:
         if item_count[move - 1] == 0:
             continue
         else:
             pick = board[size - item_count[move - 1]][move - 1]
             item_count[move - 1] -= 1
-            if stack:
-                if stack[-1] != pick:
-                    stack.append(pick)
-                else:
-                    stack.pop()
-                    result += 2
-            else:
+            if stack[-1] != pick:
                 stack.append(pick)
+            else:
+                stack.pop()
+                result += 2
     return result
