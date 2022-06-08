@@ -18,19 +18,17 @@ def solution(m, n, board):  # m->행 n->열
             board[poplist[i][0]][poplist[i][1] + 1] = 'X'
             board[poplist[i][0] + 1][poplist[i][1]] = 'X'
             board[poplist[i][0] + 1][poplist[i][1] + 1] = 'X'
-        for i in range(-1, -m-1, -1):  # 가장 밑에 있는 행부터 시작해서
-            if 'X' in board[i]:
+        for i in range(-1, -m - 1, -1):
+            for j in range(n):
+                row = i
                 while True:
-                    row = i
-                    board[i][board[i].index('X')] = board[row - 1][board[i].index('X')]
-                    if board[i][board[i].index('X')] != 'X':
-                        board[row - 1][board[i].index('X')] = 'X'
+                    if row - 1 == -m - 1 or 'X' not in board[i]:
                         break
+                    if board[i][j] == 'X' and board[row - 1][j] != 'X':
+                        board[i][j] = board[row - 1][j]
+                        board[row - 1][j] = 'X'
+                        continue
                     row -= 1
-                    if row - 1 == -m - 1:
-                        break
-            else:
-                continue
 
     for i in range(m):
         score += board[i].count('X')
@@ -38,4 +36,8 @@ def solution(m, n, board):  # m->행 n->열
     return score
 
 
-print(solution(4, 5, ["CCBDE", "AAADE", "AAABF", "CCBBF"]))
+# [['C', 'C', 'B', 'D', 'E'], ['X', 'X', 'X', 'D', 'E'], ['X', 'X', 'X', 'B', 'F'], ['C', 'C', 'B', 'B', 'F']]
+
+# print(solution(4, 5, ["CCBDE", "AAADE", "AAABF", "CCBBF"]))
+# print(solution(5, 6, ['AAAAAA', 'BBAATB', 'BBAATB', 'JJJTAA', 'JJJTAA']))
+print(solution(6, 6, ['IIIIOO', 'IIIOOO', 'IIIOOI', 'IOOIII', 'OOOIII', 'OOIIII']))
