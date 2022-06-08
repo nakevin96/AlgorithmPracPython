@@ -18,13 +18,18 @@ def solution(m, n, board):  # m->행 n->열
             board[poplist[i][0]][poplist[i][1] + 1] = 'X'
             board[poplist[i][0] + 1][poplist[i][1]] = 'X'
             board[poplist[i][0] + 1][poplist[i][1] + 1] = 'X'
-        for i in range(1, m, -1):  # 가장 밑에 있는 행부터 시작해서
+        for i in range(-1, -m-1, -1):  # 가장 밑에 있는 행부터 시작해서
             while 'X' in board[i]:  # 'X'가 없을때까지 반복함
                 row = i  # 바로 윗 자리에 'X'가 없을시 하나씩 줄이면서 위에 행으로 감
-                while board[i][board[i].index('X')] != 'X':  # 해당 행에 'X'가 존재하지 않을때까지 반복
+
+                while True:  # 해당 행에 위에 'X'가 아닌 값으로 바꿀때까지 반복
                     board[i][board[i].index('X')] = board[row - 1][board[i].index('X')]
+                    if board[i][board[i].index('X')] != 'X':
+                        board[row - 1][board[i].index('X')] = 'X'
+                        break
                     row -= 1
-                board[row - 1][board[i].index('X')] = 'X'
+                    if row - 1 == -m - 1:
+                        break
     for i in range(m):
         score += board[i].count('X')
 
