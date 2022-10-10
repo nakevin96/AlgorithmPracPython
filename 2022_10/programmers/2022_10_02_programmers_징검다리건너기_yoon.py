@@ -41,5 +41,3 @@ def solution(stones, k):
             right = mid
 
     return right
-
->>>>>>> b7ff3aec93ffbdfa4eb101f7866855d64758d18d
