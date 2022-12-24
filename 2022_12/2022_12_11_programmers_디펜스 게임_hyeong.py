@@ -28,3 +28,8 @@ def solution(n, k, enemy):
             if n < 0:
                 return i
     return len(enemy)
+
+def solution2(n, k, enemy):
+    
+    
+    return
