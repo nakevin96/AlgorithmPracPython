@@ -18,4 +18,4 @@ def solution(data, col, row_begin, row_end):
     for i in result[1:]:
         temp = temp ^ i
     
-    return tem결
+    return temp
